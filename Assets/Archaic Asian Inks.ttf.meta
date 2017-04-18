@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b3e5c3b0184292b4cb572b5f6d631d08
+timeCreated: 1490467079
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Archaic Asian Inks
+  fontNames:
+  - Archaic Asian Inks
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
