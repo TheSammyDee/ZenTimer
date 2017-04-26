@@ -128,14 +128,14 @@ public class Controller : MonoBehaviour {
     private void StartTimers() {
         if (mainTimer.StartTimer()&&(state==s.TIMER||state==s.LIMIT)) {
             timer.Unhightlight();
+            StoreLastTimes();
             if (limitTimer.GetTime() > mainTimer.GetTime()) {
                 limitTimer.RestoreTime(limitTimer.GetTime() - mainTimer.GetTime());
             }
             limitTimer.StartTimer();
-            StoreLastTimes();
             music.Play();
             state = s.RUNNING;
-            //HideUI();
+            HideUI();
         }
     }
 
