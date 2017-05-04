@@ -130,7 +130,7 @@ public class Controller : MonoBehaviour {
             timer.Unhightlight();
             StoreLastTimes();
             if (limitTimer.GetTime() > mainTimer.GetTime()) {
-                limitTimer.RestoreTime(limitTimer.GetTime() - mainTimer.GetTime());
+                limitTimer.SetTime(limitTimer.GetTime() - mainTimer.GetTime());
             }
             limitTimer.StartTimer();
             music.Play();

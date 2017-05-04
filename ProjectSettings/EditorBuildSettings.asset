@@ -5,7 +5,15 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/PlainTimer.unity
-  - enabled: 1
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Timer.unity
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/PlainTimer.unity
+    guid: 6a375a6043578b84abdb1f5405d6bbf1
+  - enabled: 1
+    path: Assets/Scenes/Timer.unity
+    guid: c4db9ef8fc164104c848e1bd7999dfc9

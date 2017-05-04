@@ -59,7 +59,7 @@ public class Timer : MonoBehaviour {
 
     public void FullReset() {
         state = State.EDITABLE;
-        ChangeTime(0f);
+        SetTime(0f);
     }
 
     public void StopTimer() {
@@ -81,23 +81,21 @@ public class Timer : MonoBehaviour {
         secText.text = seconds.ToString("00");
     }
 
-    private void ChangeTime(float newTime) {
-        if (state == State.EDITABLE) {
-            time = (newTime <= 0) ? 0 : newTime;
-            UpdateTimeDisplay();
-        }
+    public void SetTime(float newTime) {
+        time = (newTime <= 0) ? 0 : newTime;
+        UpdateTimeDisplay();
     }
 
     public void AddTime(float addedTime) {
-        ChangeTime(time + addedTime);
+        SetTime(time + addedTime);
     }
 
     public void SubtractTime(float subtractedTime) {
-        ChangeTime(time - subtractedTime);
+        SetTime(time - subtractedTime);
     }
 
     public void RestoreTime(float newTime) {
-        selectedTime = newTime;
+        selectedTime = (newTime <= 0) ? 0 : newTime;
         Restart();
     }
 
@@ -109,6 +107,10 @@ public class Timer : MonoBehaviour {
 
     public float GetSelectedTime() {
         return selectedTime;
+    }
+
+    public bool IsEditable() {
+        return state == State.EDITABLE;
     }
 
     //APPEARANCE
