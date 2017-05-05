@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour {
     private State state;
     private Text minText;
     private Text secText;
-    private float selectedTime;
+    public float selectedTime;
     //public Controller controller;
     private Color selectedColor = new Color(.9f, .9f, 1f);
 

@@ -156,12 +156,15 @@ public class Controller : MonoBehaviour {
         limitTimer.Unhightlight();
         timeLog.text = "";
         music.Stop();
+        ShowUI();
     }
 
     private void Restart() {
         FullReset();
         mainTimer.Restart();
         limitTimer.Restart();
+        Debug.Log("stored time: " + Prefs.GetLimitTime());
+        limitTimer.RestoreTime(Prefs.GetLimitTime());
         SetGoalTimes();
     }
 
@@ -208,7 +211,7 @@ public class Controller : MonoBehaviour {
         gong.Play();
         LogTime();
         mainTimer.StopTimer();
-        limitTimer.RestoreTime(elapsedTime);
+        limitTimer.SetTime(elapsedTime);
         elapsedTime = 0;
         if (Mathf.Floor(highestThisRound) > highestRecord) {
             AddNewRecord();
@@ -248,7 +251,7 @@ public class Controller : MonoBehaviour {
 
     private void StoreLastTimes() {
         Prefs.SetTimerTime(mainTimer.GetSelectedTime());
-        Prefs.SetLimitTime(limitTimer.GetSelectedTime());
+        Prefs.SetLimitTime(limitTimer.GetTime());
     }
 
     private void DisplayRecords() {
