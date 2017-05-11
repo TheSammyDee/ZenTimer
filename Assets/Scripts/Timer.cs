@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour {
 
     public delegate void EndTimerHandler(Timer sender);
     public event EndTimerHandler OnEndTimer;
 
+    public UnityEvent OnTimerEnd;
+
     private enum State { EDITABLE, RUNNING, PAUSED, ENDED };
     private float time;
     private State state;
     private Text minText;
     private Text secText;
-    public float selectedTime;
+    private float selectedTime;
     //public Controller controller;
     private Color selectedColor = new Color(.9f, .9f, 1f);
 
@@ -29,9 +32,11 @@ public class Timer : MonoBehaviour {
             time -= Time.deltaTime;
             UpdateTimeDisplay();
             if (time <= 0) {
+                StopTimer();
                 if (OnEndTimer != null) {
                     OnEndTimer(this);
                 }
+                OnTimerEnd.Invoke();
             }
         }
     }

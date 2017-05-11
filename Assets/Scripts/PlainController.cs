@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class PlainController : MonoBehaviour {
 
-   public PlainTimer mainTimer;
+   public Timer mainTimer;
 
-    private PlainTimer timer;
+    private Timer timer;
     private enum s { TIMER, LIMIT, RUNNING, ENDED };
     private s state;
     private AudioSource music;
@@ -28,20 +28,15 @@ public class PlainController : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         if (Input.GetKeyDown("up")) {
-            timer.TimeHigherSmall();
+            timer.AddTime(10);
         } else if (Input.GetKeyDown("down")) {
-            timer.TimeLowerSmall();
+            timer.SubtractTime(10);
         } else if (Input.GetKeyDown("right")) {
-            timer.TimeHigherLarge();
+            timer.AddTime(60);
         } else if (Input.GetKeyDown("left")) {
-            timer.TimeLowerLarge();
+            timer.SubtractTime(60);
         } else if (Input.GetKeyDown(KeyCode.Space)) {
-            if (state == s.RUNNING) {
-                state = s.TIMER;
-                timer.Pause();
-            } else if (state != s.ENDED) {
-                StartTimers();
-            }
+            StartStop();
         } else if (Input.GetKeyDown(KeyCode.Backspace)) {
             FullReset();
         } else if (Input.GetKeyDown(KeyCode.RightShift)) {
@@ -62,9 +57,18 @@ public class PlainController : MonoBehaviour {
 
     }
 
+    public void StartStop() {
+        if (state == s.RUNNING) {
+            state = s.TIMER;
+            timer.Pause();
+        } else if (state != s.ENDED) {
+            StartTimers();
+        }
+    }
+
     private void RestoreTimes() {
         if (Prefs.PlainStored()) {
-            mainTimer.RestoreTimes(Prefs.GetPlainTime());
+            mainTimer.RestoreTime(Prefs.GetPlainTime());
         }
     }
 
@@ -91,7 +95,7 @@ public class PlainController : MonoBehaviour {
         state = s.ENDED;
         musicFading = true;
         gong.Play();
-        mainTimer.StopTimer();
+        Restart();
     }
 
     private void StoreLastTimes() {
