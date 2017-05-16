@@ -57,6 +57,10 @@ public class Timer : MonoBehaviour {
         state = State.PAUSED;
     }
 
+    public void Resume() {
+        state = State.RUNNING;
+    }
+
     public void Restart() {
         time = selectedTime;
         UpdateTimeDisplay();

@@ -9,7 +9,7 @@ public class PlainController : MonoBehaviour {
    public Timer mainTimer;
 
     private Timer timer;
-    private enum s { TIMER, LIMIT, RUNNING, ENDED };
+    private enum s { TIMER, LIMIT, RUNNING, PAUSED, ENDED };
     private s state;
     private AudioSource music;
     private AudioSource gong;
@@ -59,8 +59,11 @@ public class PlainController : MonoBehaviour {
 
     public void StartStop() {
         if (state == s.RUNNING) {
-            state = s.TIMER;
+            state = s.PAUSED;
             timer.Pause();
+        } else if (state == s.PAUSED) {
+            state = s.RUNNING;
+            timer.Resume();
         } else if (state != s.ENDED) {
             StartTimers();
         }
